@@ -6,11 +6,44 @@ sources:
     tables:
       - name: localidades
         description: Tabela fonte de localidades com informação de cidade e estado
+        columns:
+          - name: cod_localidade
+            description: Chave primaria tabela localidades
+            data_tests:
+              - unique
+              - not_null
+              
       - name: clientes
         description: Tabela fonte de clientes
+        columns:
+          - name: cod_cliente
+            description: Chave primaria tabela clientes
+            data_tests:
+              - unique
+              - not_null
       - name: colaboradores
         description: Tabela fonte de colaboradores
+        columns:
+          - name: cod_colaborador
+            description: Chave primaria tabela colaboradores
+            data_tests:
+              - unique
+              - not_null
       - name: agencias
         description: Tabela fonte de agências
+        columns:
+          - name: cod_agencia
+            description: Chave primaria tabela agencias
+            data_tests:
+              - unique
+              - not_null
       - name: colaborador_agencia
         description: Tabela fonte da relação colaborador x agência
+
+      - name: colaborador_agencia
+        data_tests:
+          - dbt_utils.unique_combination_of_columns:
+              arguments:
+                combination_of_columns:
+                  - cod_colaborador
+                  - cod_agencia
