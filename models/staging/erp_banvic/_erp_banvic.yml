@@ -1,4 +1,3 @@
-
 sources:
   - name: erp
     description: Sistema ERP da Banvic com dados de clientes, colaboradores, contas e transações.
@@ -12,7 +11,7 @@ sources:
             data_tests:
               - unique
               - not_null
-              
+
       - name: clientes
         description: Tabela fonte de clientes
         columns:
@@ -21,6 +20,7 @@ sources:
             data_tests:
               - unique
               - not_null
+
       - name: colaboradores
         description: Tabela fonte de colaboradores
         columns:
@@ -29,6 +29,7 @@ sources:
             data_tests:
               - unique
               - not_null
+
       - name: agencias
         description: Tabela fonte de agências
         columns:
@@ -37,13 +38,39 @@ sources:
             data_tests:
               - unique
               - not_null
-      - name: colaborador_agencia
-        description: Tabela fonte da relação colaborador x agência
 
       - name: colaborador_agencia
+        description: Tabela fonte da relação colaborador x agência
         data_tests:
           - dbt_utils.unique_combination_of_columns:
               arguments:
                 combination_of_columns:
                   - cod_colaborador
                   - cod_agencia
+
+      - name: contas
+        description: Tabela fonte de contas
+        columns:
+          - name: num_conta
+            description: Chave primaria tabela contas
+            data_tests:
+              - unique
+              - not_null
+
+      - name: transacoes
+        description: Tabela fonte de transações
+        columns:
+          - name: cod_transacao
+            description: Chave primaria tabela transacoes
+            data_tests:
+              - unique
+              - not_null
+
+      - name: propostas_credito
+        description: Tabela fonte de propostas de crédito
+        columns:
+          - name: cod_proposta
+            description: Chave primaria tabela propostas_credito
+            data_tests:
+              - unique
+              - not_null
